@@ -4,29 +4,22 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "wokwi-pi-pico",
-      "id": "pico",
-      "top": 0,
-      "left": 0,
-      "attrs": { "env": "micropython-20231227-v1.22.0" }
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 9.6,
+      "left": -100.76,
+      "attrs": { "env": "micropython-20231005-v1.21.0" }
     },
-    {
-      "type": "board-ssd1306",
-      "id": "oled1",
-      "top": 137.54,
-      "left": -172.57,
-      "attrs": { "i2cAddress": "0x3c" }
-    },
-    { "type": "board-ds18b20", "id": "temp1", "top": -106.73, "left": 13.68, "attrs": {} }
+    { "type": "board-ssd1306", "id": "oled1", "top": 137.54, "left": 57.83, "attrs": {} },
+    { "type": "board-ds18b20", "id": "temp1", "top": -87.53, "left": -149.52, "attrs": {} }
   ],
   "connections": [
-    [ "oled1:GND", "pico:GP1", "black", [ "v0" ] ],
-    [ "oled1:VCC", "pico:3V3_EN", "red", [ "v-172.8", "h196.95" ] ],
-    [ "oled1:SCL", "pico:GP4", "green", [ "v0" ] ],
-    [ "oled1:SDA", "pico:GP5", "green", [ "v0" ] ],
-    [ "temp1:VCC", "pico:3V3_EN", "red", [ "v38.4", "h33.6" ] ],
-    [ "temp1:DQ", "pico:GP6", "green", [ "v57.6", "h-22.8" ] ],
-    [ "temp1:GND", "pico:GP1", "black", [ "v0", "h-38.4", "v67.2" ] ]
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled1:SCL", "esp:22", "green", [ "v0" ] ],
+    [ "oled1:SDA", "esp:21", "blue", [ "v-19.2", "h-105.53", "v-38.4" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v-67.2", "h-96" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-28.8", "h0.15", "v-124.8", "h-201.75" ] ]
   ],
   "dependencies": {}
 }
